@@ -21,7 +21,6 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(ShoppingCartResponse), StatusCodes.Status201Created)]
         public async Task<ActionResult<ShoppingCartResponse>> CreateBasket([FromBody] CreateShoppingCartCommand createShoppingCartCommand)
         {
-            //var command = new CreateShoppingCartCommand(createShoppingCartCommand);
             var basket = await mediator.Send(createShoppingCartCommand);
             return CreatedAtRoute("GetBasketByUsername", new { username = basket.Username }, basket);
         }
